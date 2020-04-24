@@ -32,7 +32,6 @@ namespace Phonorum_5._2
             {
                 a = 6;
                 b = 6;
-
             }
             else
             {
@@ -58,7 +57,7 @@ namespace Phonorum_5._2
             {
                 try
                 {
-                    if (value>0)
+                    if (value > 0)
                     {
                         a = value;
                     }
@@ -67,7 +66,7 @@ namespace Phonorum_5._2
                         throw new Exception("Длина стороны должна быть больше нуля");
                     }
                 }
-                catch(Exception error)
+                catch (Exception error)
                 {
                     Console.WriteLine("Error:" + error.Message);
                 }
@@ -108,7 +107,7 @@ namespace Phonorum_5._2
             {
                 try
                 {
-                    if ((value > 0)&&(value<180))
+                    if ((value > 0) && (value < 180))
                     {
                         beta = value;
                     }
@@ -123,7 +122,7 @@ namespace Phonorum_5._2
                 }
             }
         }
-      
+
         public double C
         {
             get
@@ -163,21 +162,21 @@ namespace Phonorum_5._2
         public virtual void Show()
         {
             Console.WriteLine("Длина стороны a равняется " + a + ", длина стороны b равняется " + b + ", угол между ними = " + beta);
-        }
+        } 
     }
-    class PrTriangle: Triangle
+    class PrTriangle : Triangle
     {
         public PrTriangle() : base(90)
         {
 
         }
-        public PrTriangle(double x, double y):base(x,y,90)
+        public PrTriangle(double x, double y) : base(x, y, 90)
         {
 
         }
-        public override double Beta 
-        { 
-            get => base.Beta; 
+        public override double Beta
+        {
+            get => base.Beta;
         }
         public override void Show()
         {
@@ -187,7 +186,7 @@ namespace Phonorum_5._2
         {
             get
             {
-                if (a/b==1)
+                if (a / b == 1)
                 {
                     return true;
                 }
@@ -198,13 +197,13 @@ namespace Phonorum_5._2
             }
         }
     }
-    class RavnostorTriangle : Triangle 
+    class RavnostorTriangle : Triangle
     {
-        public RavnostorTriangle():base(60)
+        public RavnostorTriangle() : base(60)
         {
 
         }
-        public RavnostorTriangle(double a) : base(a,a,60)
+        public RavnostorTriangle(double a) : base(a, a, 60)
         {
 
         }
@@ -218,7 +217,7 @@ namespace Phonorum_5._2
         }
         public override double Area()
         {
-            return Math.Round(((a * a * Math.Sqrt(3)) / 4),3);
+            return Math.Round(((a * a * Math.Sqrt(3)) / 4), 3);
         }
         public override double Perimetr()
         {
@@ -234,8 +233,11 @@ namespace Phonorum_5._2
                     if (value > 0)
                     {
                         a = value;
-                        b = value;
-                        Console.WriteLine("Треугольник равносторонний, ввиду чего изменены две стороны");
+                        if (b != a)
+                        {
+                            B = a;
+                            Console.WriteLine("Треугольник равносторонний, ввиду чего изменены две стороны");
+                        }
                     }
                     else
                     {
@@ -257,9 +259,12 @@ namespace Phonorum_5._2
                 {
                     if (value > 0)
                     {
-                        a = value;
                         b = value;
-                        Console.WriteLine("Треугольник равносторонний, ввиду чего изменены две стороны");
+                        if (b != a)
+                        {
+                            A = b;
+                            Console.WriteLine("Треугольник равносторонний, ввиду чего изменены две стороны");
+                        }
                     }
                     else
                     {
@@ -280,9 +285,10 @@ namespace Phonorum_5._2
         {
             Triangle[] array = new Triangle[6];
             double a, b, beta;
+            
             Console.WriteLine("Если вы хотите ввести значения для сторон прямоугольного тругольника, введите 1");
             int x = int.Parse(Console.ReadLine());
-            if (x==1)
+            if (x == 1)
             {
                 Console.WriteLine("Введите значение для стороны a:");
                 a = double.Parse(Console.ReadLine());
@@ -341,7 +347,7 @@ namespace Phonorum_5._2
                 b = double.Parse(Console.ReadLine());
                 Console.WriteLine("Введите значение для угла между ними:");
                 beta = double.Parse(Console.ReadLine());
-                array[4] = new Triangle(a,b,beta);
+                array[4] = new Triangle(a, b, beta);
                 Console.WriteLine("Значения для Вашего конструктора:");
                 array[4].Show();
                 Console.WriteLine("Сторона C равняется: " + array[4].C);
